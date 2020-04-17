@@ -1,0 +1,13 @@
+{
+  "name": "choutuve-app-server",
+  "version": "0.0.0",
+  "description": "Choutuve application server",
+  "author": "Leandro DESUQUE <ldesuque@fi.uba.ar>",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.1"
+  }
+}
