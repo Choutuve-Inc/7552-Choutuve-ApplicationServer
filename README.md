@@ -1,5 +1,7 @@
 # Choutuve ApplicationServer
 
+[![Build Status](https://travis-ci.com/ldesuque/7552-Choutuve-ApplicationServer.svg?branch=master)](https://travis-ci.com/github/ldesuque/7552-Choutuve-ApplicationServer)
+
 Choutuve, like YouTube, but with~~out~~ quality (App Server)
 
 ## Setup
