@@ -1,13 +1,17 @@
 {
-  "name": "choutuve-app-server",
-  "version": "0.0.0",
-  "description": "Choutuve application server",
-  "author": "Leandro DESUQUE <ldesuque@fi.uba.ar>",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  },
-  "dependencies": {
-    "express": "^4.16.1"
-  }
+    "name": "choutuve-app-server",
+    "version": "0.0.0",
+    "description": "Choutuve application server",
+    "author": "Leandro DESUQUE <ldesuque@fi.uba.ar>",
+    "main": "server.js",
+    "devDependencies": {
+        "jshint": "^2.11.0"
+    },
+    "scripts": {
+        "start": "node server.js",
+        "test": "jshint server.js"
+    },
+    "dependencies": {
+        "express": "^4.16.1"
+    }
 }

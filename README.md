@@ -22,7 +22,7 @@ sudo docker build -t choutuve-app-server .
 sudo docker run -p 49160:8080 -d choutuve-app-server
 ```
 
-## Test
+## Test Docker
 
 ```bash
 curl -i localhost:49160
@@ -36,6 +36,13 @@ sudo docker rm -f <container-name>
 
 Then you can run again with the changes :)
 (Docker-compose maybe?)
+
+## Test Travis
+
+```bash
+npm install jshint --save-dev
+npm test
+```
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
