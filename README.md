@@ -10,6 +10,19 @@ Choutuve, like YouTube, but with~~out~~ quality (App Server)
 node server.js
 ```
 
+GET localhost:3000/users
+
+POST localhost:3000/users
+
+```json
+{
+    "email": "ldesuque@choutuve.com",
+    "name": "Leandro"
+}
+```
+
+GET localhost:3000/users/:id
+
 ## Setup
 
 This will generate a package-lock.json file which will be copied to the Docker image.
