@@ -1,14 +1,20 @@
-'use strict';
+"use strict";
 
-const express = require('express');
-
-const PORT = 8080;
-const HOST = '0.0.0.0';
+const express = require("express");
+const bodyParser = require("body-parser");
 
 const app = express();
-app.get('/', (req, res) => {
-  res.send('Choutuve app say hello!');
+
+require("./routes/user.routes.js")(app);
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get("/", (req, res) => {
+    res.json({ message: "Choutuve, like YouTube." });
 });
 
-app.listen(PORT, HOST);
-console.log(`Running on http://${HOST}:${PORT}`);
+
+app.listen(3000, () => {
+    console.log("Server is running on port 3000.");
+});

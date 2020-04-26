@@ -4,6 +4,12 @@
 
 Choutuve, like YouTube, but with~~out~~ quality (App Server)
 
+## Test the App
+
+```bash
+node server.js
+```
+
 ## Setup
 
 This will generate a package-lock.json file which will be copied to the Docker image.
@@ -30,7 +36,7 @@ sudo docker run -p 49160:8080 -d choutuve-app-server
 curl -i localhost:49160
 ```
 
-## Remove docker image
+## Remove Docker image
 ```bash
 sudo docker container ls
 sudo docker rm -f <container-name>
