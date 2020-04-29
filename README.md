@@ -4,7 +4,7 @@
 
 Choutuve, like YouTube, but with~~out~~ quality (App Server)
 
-## Test the App
+## Test the API
 
 ```bash
 node server.js
