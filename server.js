@@ -12,6 +12,7 @@ require("./routes/user.routes.js")(app);
 require("./routes/profile.routes.js")(app);
 require("./routes/vote.routes.js")(app);
 require("./routes/comment.routes.js")(app);
+require("./routes/video.routes.js")(app);
 
 app.get("/", (req, res) => {
     res.json({ message: "Choutuve, like YouTube." });

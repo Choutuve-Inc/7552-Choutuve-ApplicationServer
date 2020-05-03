@@ -42,6 +42,11 @@ GET localhost:3000/comments/:videoId
 
 DELETE localhost:3000/comments/:commentId
 
+### Videos (Mock)
+
+GET localhost:3000/videos/:userId
+
+GET localhost:3000/videos/feed/:userId
 
 ## Setup
 
