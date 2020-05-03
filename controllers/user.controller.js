@@ -1,6 +1,5 @@
 const User = require("../models/user.model.js");
 
-// Create a new User
 exports.create = (req, res) => {
     if (!req.body) {
         res.status(400).send({
@@ -22,7 +21,6 @@ exports.create = (req, res) => {
     });
 };
 
-// Retrieve all User
 exports.findAll = (req, res) => {
     User.getAll((err, data) => {
         if (err)
@@ -33,8 +31,7 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Find a single User with a userId
-exports.findOne = (req, res) => {
+exports.findUser = (req, res) => {
     User.findById(req.params.userId, (err, data) => {
         if (err) {
             if (err.kind === "not_found") {
