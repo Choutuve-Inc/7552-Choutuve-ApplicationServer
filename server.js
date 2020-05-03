@@ -10,6 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 require("./routes/user.routes.js")(app);
 require("./routes/profile.routes.js")(app);
+require("./routes/vote.routes.js")(app);
 
 app.get("/", (req, res) => {
     res.json({ message: "Choutuve, like YouTube." });
