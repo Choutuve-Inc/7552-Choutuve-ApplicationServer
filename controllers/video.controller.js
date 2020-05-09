@@ -32,9 +32,23 @@ exports.create = (req, res) => {
             res.send(error)
             return
         }
-        res.send(response.statusCode)
+        res.send(response)
         // console.log(`statusCode: ${response.statusCode}`)
     })
+};
+
+exports.getById = (req, res) => {
+
+    request.get('https://arcane-thicket-79100.herokuapp.com/videos/' + req.params.videoId,
+        (error, response, body) => {
+            if (error) {
+                console.log(error);
+                res.send(error)
+            }
+            console.log("Response: ", response);
+            console.log("JSON: ", JSON.parse(body))
+            res.send(JSON.parse(body))
+        });
 };
 
 exports.getAllByUserId = (req, res) => {
