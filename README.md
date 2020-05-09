@@ -7,7 +7,7 @@ Choutuve, like YouTube, but with~~out~~ quality (App Server)
 ## Test the API
 
 ```bash
-node server.js
+npm start
 ```
 
 ### Users
