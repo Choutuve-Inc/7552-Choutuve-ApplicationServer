@@ -9,7 +9,7 @@ exports.create = (req, res) => {
     }
 
     const video = new Video({
-        date_of_upload: req.body.date_of_upload,
+        date: req.body.date,
         size: req.body.size,
         thumbnail: req.body.thumbnail,
         title: req.body.title,
@@ -19,7 +19,7 @@ exports.create = (req, res) => {
 
     request.post('https://arcane-thicket-79100.herokuapp.com/videos', {
         json: {
-            date_of_upload: video.date_of_upload,
+            date: video.date,
             size: video.size,
             thumbnail: video.thumbnail,
             title: video.title,

@@ -1,7 +1,7 @@
 // const sql = require("./db.js");
 
 const Video = function(video) {
-    this.date_of_upload = video.date_of_upload,
+    this.date = video.date,
     this.size = video.size,
     this.thumbnail = video.thumbnail,
     this.title = video.title,
