@@ -1,5 +1,7 @@
 /*jshint esversion: 6 */
 
+const PORT = process.env.PORT || 3000;
+
 const express = require("express");
 const bodyParser = require("body-parser");
 
@@ -18,6 +20,6 @@ app.get("/", (req, res) => {
     res.json({ message: "Choutuve, like YouTube." });
 });
 
-app.listen(3000, () => {
-    console.log("Server is running on port 3000.");
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}.`);
 });
