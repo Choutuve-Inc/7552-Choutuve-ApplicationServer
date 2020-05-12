@@ -3,6 +3,8 @@ module.exports = app => {
 
     app.post("/videos/", videos.create)
 
+    app.get("/videos/", videos.getAll)
+
     app.get("/videos/:videoId", videos.getById)
 
     app.get("/videos/:userId", videos.getAllByUserId)

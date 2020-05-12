@@ -37,6 +37,20 @@ exports.create = (req, res) => {
     })
 };
 
+exports.getAll = (req, res) => {
+
+    request.get('https://arcane-thicket-79100.herokuapp.com/videos',
+        (error, response, body) => {
+            if (error) {
+                console.log(error);
+                res.send(error)
+            }
+            console.log("Response: ", response);
+            console.log("JSON: ", JSON.parse(body))
+            res.send(JSON.parse(body))
+        });
+};
+
 exports.getById = (req, res) => {
 
     request.get('https://arcane-thicket-79100.herokuapp.com/videos/' + req.params.videoId,
