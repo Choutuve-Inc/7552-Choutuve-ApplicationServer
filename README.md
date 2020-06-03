@@ -4,6 +4,10 @@
 
 Choutuve, like YouTube, but with~~out~~ quality (App Server)
 
+## Test in Heroku
+
+https://choutuve-app-server.herokuapp.com
+
 ## Test the API
 
 ```bash
