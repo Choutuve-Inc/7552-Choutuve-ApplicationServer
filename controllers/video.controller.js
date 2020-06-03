@@ -9,22 +9,24 @@ exports.create = (req, res) => {
     }
 
     const video = new Video({
-        date: req.body.date,
-        size: req.body.size,
-        thumbnail: req.body.thumbnail,
+        user: req.body.user,
         title: req.body.title,
+        description: req.body.description,
+        date: req.body.date,
         url: req.body.url,
-        user: req.body.user
+        thumbnail: req.body.thumbnail,
+        size: req.body.size
     });
 
     request.post('https://arcane-thicket-79100.herokuapp.com/videos', {
         json: {
-            date: video.date,
-            size: video.size,
-            thumbnail: video.thumbnail,
+            user: video.user,
             title: video.title,
+            description: video.description,
+            date: video.date,
             url: video.url,
-            user: video.user
+            thumbnail: video.thumbnail,
+            size: video.size
         }
     }, (error, response) => {
         if (error) {

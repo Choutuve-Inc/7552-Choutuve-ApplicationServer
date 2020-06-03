@@ -1,12 +1,13 @@
 // const sql = require("./db.js");
 
 const Video = function(video) {
-    this.date = video.date,
-    this.size = video.size,
-    this.thumbnail = video.thumbnail,
+    this.user = video.user,
     this.title = video.title,
+    this.description = video.description,
+    this.date = video.date,
     this.url = video.url,
-    this.user = video.user
+    this.thumbnail = video.thumbnail,
+    this.size = video.size
 };
 
 // TODO
