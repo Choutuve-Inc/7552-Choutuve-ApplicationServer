@@ -30,7 +30,6 @@ exports.login = (req, res) => {
     })
 };
 
-
 exports.create = (req, res) => {
     if (!req.body) {
         res.status(400).send({
@@ -40,40 +39,27 @@ exports.create = (req, res) => {
 
     const user = new User({
         email: req.body.email,
-        name: req.body.name,
+        phone: req.body.phone,
+        username: req.body.username,
+        password: req.body.password,
+        tipo: req.body.tipo,
+        image: req.body.image
     });
 
-    User.create(user, (err, data) => {
-        if (err)
-            res.status(500).send({
-                message: err.message || "Error creating the user."
-            });
-        else res.send(data);
-    });
-};
-
-exports.findAll = (req, res) => {
-    User.getAll((err, data) => {
-        if (err)
-            res.status(500).send({
-                message: err.message || "Error retrieving users."
-            });
-        else res.send(data);
-    });
-};
-
-exports.findUser = (req, res) => {
-    User.findById(req.params.userId, (err, data) => {
-        if (err) {
-            if (err.kind === "not_found") {
-                res.status(404).send({
-                    message: `userId ${req.params.userId} not found.`
-                });
-            } else {
-                res.status(500).send({
-                    message: "Error retrieving userId " + req.params.userId
-                });
-            }
-        } else res.send(data);
-    });
+    request.post('https://serene-shelf-10674.herokuapp.com/create', {
+        json: {
+            email: user.email,
+            phone: user.phone,
+            username: user.username,
+            password: user.password,
+            tipo: user.tipo,
+            image: user.image
+        }
+    }, (error, response) => {
+        if (error) {
+            res.send(error)
+            return
+        }
+        res.send(response)
+    })
 };

@@ -1,11 +1,10 @@
-const User = function(video) {
-    this.user = video.user,
-    this.title = video.title,
-    this.description = video.description,
-    this.date = video.date,
-    this.url = video.url,
-    this.thumbnail = video.thumbnail,
-    this.size = video.size
+const User = function(user) {
+    this.email = user.email,
+    this.phone = user.phone,
+    this.username = user.username,
+    this.password = user.password,
+    this.tipo = user.tipo,
+    this.image = user.image
 };
 
 module.exports = User;
