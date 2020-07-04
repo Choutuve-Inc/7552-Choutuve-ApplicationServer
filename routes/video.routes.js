@@ -11,4 +11,6 @@ module.exports = app => {
 
     app.get("/videos/feed/:userId", videos.getFeed)
 
+    app.delete("/videos/:videoId", videos.delete)
+
 }

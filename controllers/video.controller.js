@@ -67,6 +67,21 @@ exports.getById = (req, res) => {
         });
 };
 
+exports.delete = (req, res) => {
+
+    request.delete('https://arcane-thicket-79100.herokuapp.com/videos/' + req.params.videoId,
+        (error, response, body) => {
+
+            if (response.statusCode == 200) {
+                res.send('Video eliminado con exito (Video ID: ' + req.params.videoId + ')')
+            }
+            else {
+                res.statusMessage = "Error eliminando el video";
+                res.status(404).end();
+            }
+        });
+};
+
 exports.getAllByUserId = (req, res) => {
     res.send("Mocked VIDEO works fine :)")
 };
