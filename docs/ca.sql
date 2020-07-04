@@ -18,5 +18,11 @@ CREATE TABLE friendlist (
     PRIMARY KEY(idUser, idUser_FK)
 );    
 
+CREATE TABLE devices (               
+    idUser INTEGER NOT NULL PRIMARY KEY,             
+    device varchar(300) NOT NULL
+);    
+
+
 INSERT INTO friendlist (idUser, idUser_FK)
 VALUES (5,1);

@@ -46,13 +46,13 @@ exports.getAll = (req, res) => {
     // TODO BASE DE DATOS CON FRIENDLIST
     const userId = req.body.user
     // console.log("a ver el userId:", userId)
-
     // const friendlist = Friendlist.getAllByUserId(userId)
     // console.log("a ver los amigos:", friendlist)
+    console.log("aaaa", res)
 
     request.get('https://arcane-thicket-79100.herokuapp.com/videos', {
         json: {
-            friends: [userId],
+            friends: [String(userId)],
         }
     }, (error, response, body) => {
             if (error) {
