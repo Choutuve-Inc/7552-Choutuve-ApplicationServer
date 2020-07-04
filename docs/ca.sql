@@ -11,3 +11,12 @@ CREATE TABLE IF NOT EXISTS `comment` (
   date datetime NOT NULL,
   message varchar(500) NOT NULL
 );
+
+CREATE TABLE friendlist (               
+    idUser INTEGER NOT NULL,             
+    idUser_FK INTEGER NOT NULL,
+    PRIMARY KEY(idUser, idUser_FK)
+);    
+
+INSERT INTO friendlist (idUser, idUser_FK)
+VALUES (5,1);
