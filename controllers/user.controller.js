@@ -16,6 +16,8 @@ exports.login = (req, res) => {
         device: req.body.device
     });
 
+    let userId = null
+
     request.post('https://serene-shelf-10674.herokuapp.com/login', {
         json: {
             email: login.email,
@@ -25,12 +27,20 @@ exports.login = (req, res) => {
         }
     }, (error, response, body) => {
         if (response.statusCode == 200) {
+            userId = body.uid
+            console.log(userId)
+            console.log(User.create(userId, login.device))
             res.status(200).send(body)
         }
         else {
             res.status(404).send(body);
         }
     })
+
+    if (userId) {
+        console.log(userId)
+    }
+
 };
 
 exports.create = (req, res) => {
