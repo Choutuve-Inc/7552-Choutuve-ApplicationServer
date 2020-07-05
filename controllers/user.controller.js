@@ -13,6 +13,7 @@ exports.login = (req, res) => {
         email: req.body.email,
         password: req.body.password,
         tipo: req.body.tipo,
+        device: req.body.device
     });
 
     request.post('https://serene-shelf-10674.herokuapp.com/login', {
@@ -20,13 +21,16 @@ exports.login = (req, res) => {
             email: login.email,
             password: login.password,
             tipo: login.tipo,
+            device: login.device,
         }
-    }, (error, response) => {
-        if (error) {
-            res.send(error)
-            return
+    }, (error, response, body) => {
+        if (response.statusCode == 200) {
+            console.log("qsdqsdsqd", body)
+            res.status(200).send(body)
         }
-        res.send(response)
+        else {
+            res.status(404).send(body);
+        }
     })
 };
 
