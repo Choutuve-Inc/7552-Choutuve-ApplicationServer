@@ -9,19 +9,21 @@ const User = function(user) {
     this.image = user.image
 };
 
-User.create = (userId, deviceId, result) => {
+User.create = (userId, deviceId) => {
     // var sql = "INSERT INTO customers (name, address) VALUES ('Company Inc', 'Highway 37')";
     let values = [userId, deviceId]
     // console.log("esto quiero: ", values)
-    sql.query("INSERT INTO devices (idUser, device) VALUES (" + userId + ", " + deviceId + ")", values, (err, res) => {
+    let query = "INSERT INTO devices (idUser, device) VALUES (\"" + userId + "\" , \"" + deviceId + "\");"
+    console.log("query: ", query)
+    sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
-            result(err, null);
-            return;
+            // result(err, null);
+            return null;
         }
 
-        console.log("[CREATED] Comment: ", { id: res, ...comment });
-        result(null, { id: res, ...comment });
+        console.log("[CREATED] Comment: ", { id: res, });
+        return true
     });
 };
 

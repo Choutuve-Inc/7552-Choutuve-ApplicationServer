@@ -2,7 +2,7 @@
 //     HOST: "localhost",
 //     USER: "root",
 //     PASSWORD: "",
-//     DB: "ct-as"
+//     DB: "choutuve"
 // };
 
 module.exports = {
