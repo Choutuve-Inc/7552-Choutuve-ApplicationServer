@@ -10,20 +10,29 @@ const User = function(user) {
 };
 
 User.create = (userId, deviceId) => {
-    // var sql = "INSERT INTO customers (name, address) VALUES ('Company Inc', 'Highway 37')";
-    let values = [userId, deviceId]
-    // console.log("esto quiero: ", values)
     let query = "INSERT INTO devices (idUser, device) VALUES (\"" + userId + "\" , \"" + deviceId + "\");"
-    console.log("query: ", query)
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
-            // result(err, null);
             return null;
         }
 
         console.log("[CREATED] Comment: ", { id: res, });
         return true
+    });
+};
+
+User.getDeviceID = (receiverId, response) => {
+    let query = "SELECT device FROM devices WHERE idUser = \"" + receiverId + "\";"
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            return null;
+        }
+
+        console.log("Result: ", res[0].device);
+        response = 123
+        return res[0].device
     });
 };
 
