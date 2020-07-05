@@ -25,7 +25,6 @@ exports.login = (req, res) => {
         }
     }, (error, response, body) => {
         if (response.statusCode == 200) {
-            console.log("qsdqsdsqd", body)
             res.status(200).send(body)
         }
         else {
@@ -59,11 +58,11 @@ exports.create = (req, res) => {
             tipo: user.tipo,
             image: user.image
         }
-    }, (error, response) => {
+    }, (error, response, body) => {
         if (error) {
             res.send(error)
             return
         }
-        res.send(response)
+        res.send(body)
     })
 };
