@@ -1,6 +1,12 @@
 const Notification = require("../models/notification.model.js")
 
+const admin = require("firebase-admin");
+const serviceAccount = require("../config/keys.json");
+const deviceId = "cqq9RCxlQE6ZMYfpxfKIt7:APA91bGc4usxBrRC_t4Ad5j5rT_iGruMQUc7_cClgr-TY2ClS6m978Lfkvrkqq-HyMS_h8XFEn6xeG4atfdjUai4_gV5p-YAKyo4V1aTLDbKE_AHO0PqsbSdgXD7GhQXuHP3tRmj7ZpG"
+
 const request = require('request')
+
+let initialized = false;
 
 exports.send = (req, res) => {
     if (!req.body) {
@@ -9,27 +15,28 @@ exports.send = (req, res) => {
         });
     }
 
+    if (!initialized) {
+        admin.initializeApp({
+            credential: admin.credential.cert(serviceAccount),
+            databaseURL: "https://chotuve-android-media.firebaseio.com"
+        });
+        initialized = true
+    }
+
     const notification = new Notification({
         idSender: req.body.idSender,
         idReceiver: req.body.idReceiver,
         message: req.body.message,
     });
 
-    res.send(notification)
 
-    // request.post('https://arcane-thicket-79100.herokuapp.com/videos', {
-    //     json: {
-    //         userIdSender: video.user,
-    //         userIdReceiver: video.title,
-    //         mensaje: video.description,
-    //     }
-    // }, (error, response) => {
-    //     if (error) {
-    //         // console.error(error)
-    //         res.send(error)
-    //         return
-    //     }
-    //     res.send(response)
-    //     // console.log(`statusCode: ${response.statusCode}`)
-    // })
+    let message = {
+        data: {
+            title: "Mensaje de server",
+            body: notification.message
+        },
+        token: deviceId
+
+    }
+    res.send(admin.messaging().send(message))
 };

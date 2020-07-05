@@ -1,0 +1,12 @@
+{
+    "type": "service_account",
+    "project_id": "chotuve-android-media",
+    "private_key_id": "54f49dd6736bac222f2046bfab480714e0ff134c",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDKiLuSUYdKLSbk\nIkpXFGNk2Eo53usAxuPoC3y+pbabA3sjT2IcFwbNpmbC2qE9fIox67D0CtN4LkVm\ndLaYPZ6iyQftlmHdzDSIAJUEL8B+a4cBLAPiETYM929HKcKmPQu2f7hMxwI4/Dxy\nqTHtfshxwZ93wRHtTlJjioBL7X/jgWRdmxygrDOvkF+ZupbrC3XJRlf+nGkEj48z\nw8fkV4dYJGskAqohXQacB5wmVXdj/ojzGrj0LdBGh16+2MTuj3UUtwOqqMk4MQPp\noeLW8TsNCFVWC0I4Zrk6oFMqG6COpbykx8fbh072lmYXoxNFWbrNZCjOUavy5w/y\nsKv/KKTfAgMBAAECggEAUfQoKlnxK7O/k/rIKBpo6cqXpnkskMDqQeA8Fw0JKgqr\njis2IPW0XAzkch5ztmSpqu+bR/UFgxD+Jio+JLZydZ5xJdN/QHe8HfhWVD5aXw11\nsKS14YljXLXXAm3EhO4Yyj0+P1sb7CEs+Jy8RkTSKS3XMGcgsOzLa9oEdjThVhYy\nTrAMOZY/VNovjD/Y7CMSGJ5ZZyaQcXkSTp31PzCRfux1mpv4gHES627zwLsDVCGC\npDXgdqz2G3ThOEFXtjkG2vttm35FJg9Xi8i5hd9s7y+5cjl7cxE6ZZMg08hMSwtg\n3mWQrXrX5Ph/r5zyCFdMF+LIv/QG1KCPq0AtluUIgQKBgQDnzTSawiChL/y7CxBN\n3xfZ0o8kj/aRQADIi+72cx6xba3sq0wNDzgNk25cKX2cqf5kk4SfcLyan/+rsH03\nqPLf3NqSbcBfxTkLO3I0qt/hkh77y5kI5Uw8GQag1r9vGTrmu7DeHEEtUlu+Ccgx\n7UHFCx4Mt/Yeh8cpaFHd5G6eQQKBgQDfrV30huWcX3RmfbNC6rl21uwo2OJpnKK9\n0Od6xametnDZ7/dx8eV1jusFx8fH5Cscn9Wwq+y6RnpyyDXOoUiMfcwzFH/qrT3n\npA6iNKtkP1pdx3dkRH3CrTkPxZ4CfcVPAXDkaIrSYPg+dqqHjfdikiSWNzrUTCcN\nB9jxMaq7HwKBgFIdL3VjL4vqI+1ejfgH/7r6DBs3pHDv61cfuxcy0LypzeL5C4fU\nzFaC06VyTT0iOywF1gVlOmrMIxX+/1yoTOFgq00T9AH5K6v+8wYVQhn2WWN5TE0K\nbWcctmxjpo0EswjplE4aVDxp4HYBoRmOoq3aslpvEJDgKH1Spy2jrkwBAoGAQR3Q\nd2p6F872LQw1DqsUuRMSh0W0jDhsbEQPz38RxUGpkti4ObTJLzMfGnyxnXDAWEHz\nzM4QSZ5Q8W91sqTjYPsSYmB6aNBscC4jkHcy2ilTXm++QzNpRS52qS/Hs0P4F+r8\neZIxr9NJEa4sMPBUb57KBe0oNDvDNpjtQDJMWNMCgYEA1fjcnGU6tqVrakx6FcH9\nK9tQP55VnIWmbyD1CrGuJ0jruYQhA0T76qmdKDwCSP36fCDQDralSspPX04yCWqX\nsuP8rqq4GanEbAMO7H6f9k4gIUPLwAN/4FlcRyIv/8M1kAso/Q2uMsA0Ssjj6g5Q\np/fHc26tFhlSmdtS38SnzDA=\n-----END PRIVATE KEY-----\n",
+    "client_email": "firebase-adminsdk-5as1a@chotuve-android-media.iam.gserviceaccount.com",
+    "client_id": "114804652198379229777",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-5as1a%40chotuve-android-media.iam.gserviceaccount.com"
+}
