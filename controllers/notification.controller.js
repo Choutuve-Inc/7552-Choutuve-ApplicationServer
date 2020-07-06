@@ -2,7 +2,7 @@
 // sudo ./mysql --host=us-cdbr-east-02.cleardb.com --user=bae5e06ded96af --password=b08a75d4 --reconnect heroku_6607e3e624ef30b
 
 const Notification = require("../models/notification.model.js")
-const User = require("../models/user.model.js");
+// const User = require("../models/user.model.js");
 
 const admin = require("firebase-admin");
 const serviceAccount = require("../config/keys.json");

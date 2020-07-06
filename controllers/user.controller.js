@@ -28,8 +28,8 @@ exports.login = (req, res) => {
     }, (error, response, body) => {
         if (response.statusCode == 200) {
             userId = body.uid
-            console.log(userId)
-            console.log(User.create(userId, login.device))
+            // console.log(userId)
+            // console.log(User.create(userId, login.device))
             res.status(200).send(body)
         }
         else {
