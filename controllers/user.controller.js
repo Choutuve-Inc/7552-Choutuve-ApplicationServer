@@ -27,7 +27,7 @@ exports.login = (req, res) => {
         }
     }, (error, response, body) => {
         if (response.statusCode == 200) {
-            userId = body.uid
+            // userId = body.uid
             // console.log(userId)
             // console.log(User.create(userId, login.device))
             res.status(200).send(body)
@@ -36,11 +36,6 @@ exports.login = (req, res) => {
             res.status(404).send(body);
         }
     })
-
-    if (userId) {
-        console.log(userId)
-    }
-
 };
 
 exports.create = (req, res) => {
