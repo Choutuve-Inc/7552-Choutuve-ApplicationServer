@@ -3,7 +3,7 @@ module.exports = app => {
 
     app.post("/videos/", videos.create)
 
-    app.get("/videos/", videos.getAll)
+    app.patch("/videos/", videos.getAll)
 
     app.get("/videos/:videoId", videos.getById)
 
