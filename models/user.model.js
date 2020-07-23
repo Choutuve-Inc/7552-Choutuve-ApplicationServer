@@ -29,7 +29,7 @@ User.getUser = (userId) => {
 
 User.getUserByDevice = (deviceId) => {
     const result = sql.query("SELECT idUser FROM devices WHERE device = \"" + deviceId + "\"");
-    console.log("GET DEVICES BY DEVICEID:", result[0])
+    console.log("GET USER BY DEVICEID:", result[0])
     return result[0]
 };
 
@@ -37,21 +37,12 @@ User.delete = (deviceId) => {
     const result = sql.query("DELETE FROM devices WHERE device = \"" + deviceId + "\"");
     console.log("DELETED:", result)
     return true
-
-
 };
-// User.getDeviceID = (receiverId, response) => {
-//     let query = "SELECT device FROM devices WHERE idUser = \"" + receiverId + "\";"
-//     sql.query(query, (err, res) => {
-//         if (err) {
-//             console.log("error: ", err);
-//             return null;
-//         }
 
-//         console.log("Result: ", res[0].device);
-//         response = 123
-//         return res[0].device
-//     });
-// };
+User.getDeviceID = (receiverId) => {
+    const result = sql.query("SELECT device FROM devices WHERE idUser = \"" + receiverId + "\"");
+    console.log("GET DEVICEID:", result[0])
+    return result[0]
+};
 
 module.exports = User;

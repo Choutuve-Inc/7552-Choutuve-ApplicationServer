@@ -28,20 +28,12 @@ exports.login = (req, res) => {
     }, (error, response, body) => {
         if (response.statusCode == 200) {
             userId = body.uid
-            console.log(userId)
-            
-            // console.log(User.getUser(userId))
-            console.log("aca1")
             const user = User.getUser(userId)
-            console.log("aca2")
 
-            console.log("user:", user)
             if (user == undefined) {
-                console.log("entre", login.device)
                 User.create(userId, login.device)
                 res.status(200).send(body)
             } else {
-                console.log('updated')
                 User.update(userId, login.device)
                 res.status(200).send(body)
             }
@@ -69,9 +61,7 @@ exports.logout = (req, res) => {
             console.log("Device a borrar:", deviceId)
             
             const user = User.getUserByDevice(deviceId)
-            console.log("user:", user)
             if (user != undefined) {
-                console.log("entre a borrar")
                 User.delete(deviceId)
             }
             res.status(200).send(body)
