@@ -3,6 +3,8 @@ module.exports = app => {
 
     app.post("/login", users.login)
 
+    app.post("/logout", users.logout)
+
     app.post("/create", users.create)
 
     // app.get("/users/:id", users.findUser)

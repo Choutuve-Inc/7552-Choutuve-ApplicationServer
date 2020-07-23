@@ -27,15 +27,60 @@ exports.login = (req, res) => {
         }
     }, (error, response, body) => {
         if (response.statusCode == 200) {
-            // userId = body.uid
-            // console.log(userId)
-            // console.log(User.create(userId, login.device))
+            userId = body.uid
+            console.log(userId)
+            
+            // console.log(User.getUser(userId))
+            console.log("aca1")
+            const user = User.getUser(userId)
+            console.log("aca2")
+
+            console.log("user:", user)
+            if (user == undefined) {
+                console.log("entre", login.device)
+                User.create(userId, login.device)
+                res.status(200).send(body)
+            } else {
+                console.log('updated')
+                User.update(userId, login.device)
+                res.status(200).send(body)
+            }
+        }
+        else {
+            res.status(404).send(body);
+        }
+    })
+};
+
+exports.logout = (req, res) => {
+    if (!req.body) {
+        res.status(400).send({
+            message: req.body || "Content can not be empty!"
+        });
+    }
+
+    request.post('https://serene-shelf-10674.herokuapp.com/logout', {
+        json: {
+            device: req.body.device
+        }
+    }, (error, response, body) => {
+        if (response.statusCode == 204) {
+            deviceId = req.body.device
+            console.log("Device a borrar:", deviceId)
+            
+            const user = User.getUserByDevice(deviceId)
+            console.log("user:", user)
+            if (user != undefined) {
+                console.log("entre a borrar")
+                User.delete(deviceId)
+            }
             res.status(200).send(body)
         }
         else {
             res.status(404).send(body);
         }
     })
+
 };
 
 exports.create = (req, res) => {

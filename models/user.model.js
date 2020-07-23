@@ -1,4 +1,4 @@
-// const sql = require("./db.js");
+const sql = require("./db.js");
 
 const User = function(user) {
     this.email = user.email,
@@ -9,19 +9,37 @@ const User = function(user) {
     this.image = user.image
 };
 
-// User.create = (userId, deviceId) => {
-//     let query = "INSERT INTO devices (idUser, device) VALUES (\"" + userId + "\" , \"" + deviceId + "\");"
-//     sql.query(query, (err, res) => {
-//         if (err) {
-//             console.log("error: ", err);
-//             return null;
-//         }
+User.create = (userId, deviceId) => {
+    const result = sql.query("INSERT INTO devices (idUser, device) VALUES (\"" + userId + "\" , \"" + deviceId + "\");");
+    console.log("CREATE:", result)
+    return true
+};
 
-//         console.log("[CREATED] Comment: ", { id: res, });
-//         return true
-//     });
-// };
+User.update = (userId, deviceId) => {
+    const result = sql.query("UPDATE devices SET device = \"" + deviceId + "\" WHERE idUser = \"" + userId + "\";");
+    console.log("UPDATE:", result)
+    return true
+};
 
+User.getUser = (userId) => {
+    const result = sql.query("SELECT idUser FROM devices WHERE idUser = \"" + userId + "\"");
+    console.log("GET DEVICES BY USERID:", result[0])
+    return result[0]
+};
+
+User.getUserByDevice = (deviceId) => {
+    const result = sql.query("SELECT idUser FROM devices WHERE device = \"" + deviceId + "\"");
+    console.log("GET DEVICES BY DEVICEID:", result[0])
+    return result[0]
+};
+
+User.delete = (deviceId) => {
+    const result = sql.query("DELETE FROM devices WHERE device = \"" + deviceId + "\"");
+    console.log("DELETED:", result)
+    return true
+
+
+};
 // User.getDeviceID = (receiverId, response) => {
 //     let query = "SELECT device FROM devices WHERE idUser = \"" + receiverId + "\";"
 //     sql.query(query, (err, res) => {
