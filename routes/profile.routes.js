@@ -1,23 +1,24 @@
 module.exports = app => {
     const profiles = require("../controllers/profile.controller.js")
 
-    // Get all profiles
-    app.get("/profiles", profiles.getProfiles)
+    // Request friendship
+    app.post("/request", profiles.requestFriendship)
 
-    // Get a specific profile
-    app.get("/profiles/:id", profiles.getProfile)
+    // Accept friendship
+    app.post("/request/confirm", profiles.acceptOrDeclineFriendRequest)
 
-    // Get all friends of a user
-    app.get("/profiles/:id/friends", profiles.getFriends)
+    // Get Friendlist
+    app.get("/friendlist", profiles.getFriends)
 
-    // Get all pending friend requests of a specific user
-    app.get("/profiles/:id/friend-requests", profiles.getFriendRequests)
+    // // Get all profiles
+    // app.get("/profiles", profiles.getProfiles)
 
-    // Send friend request to a specific user
-    //! We need an extra parameter to specify the sender id
-    //! Ex: {"sender:" "1"}
-    app.post("profiles/:id/friend-requests", profiles.requestFriendship)
+    // // Get a specific profile
+    // app.get("/profiles/:id", profiles.getProfile)
 
-    // Accept or decline a friend request
-    app.put("/profiles/:id/friend-requests/:senderId", profiles.acceptOrDeclineFriendRequest)
+    // // Get all friends of a user
+    // app.get("/profiles/:id/friends", profiles.getFriends)
+
+    // // Get all pending friend requests of a specific user
+    // app.get("/profiles/:id/friend-requests", profiles.getFriendRequests)
 }

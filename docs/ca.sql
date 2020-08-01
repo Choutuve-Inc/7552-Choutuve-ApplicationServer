@@ -13,10 +13,14 @@ CREATE TABLE IF NOT EXISTS `comment` (
 );
 
 CREATE TABLE friendlist (               
-    idUser INTEGER NOT NULL,             
-    idUser_FK INTEGER NOT NULL,
-    PRIMARY KEY(idUser, idUser_FK)
+    idUserA INTEGER NOT NULL,             
+    idUserB INTEGER NOT NULL
 );    
+
+CREATE TABLE requested (               
+    idUserA INTEGER NOT NULL,             
+    idUserB INTEGER NOT NULL
+);  
 
 CREATE TABLE devices (               
     idUser varchar(300) NOT NULL,             
@@ -31,5 +35,7 @@ CREATE TABLE devices (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-INSERT INTO friendlist (idUser, idUser_FK)
-VALUES (5,1);
+
+
+INSERT INTO friendlist (idUserA, idUserB)
+VALUES (1,2);

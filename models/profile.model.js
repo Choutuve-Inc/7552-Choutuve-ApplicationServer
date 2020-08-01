@@ -5,6 +5,10 @@ const Profile = function(profile) {
     // this.friends = profile.friends;
 };
 
-// TODO
+Profile.create = (userId, deviceId) => {
+    const result = sql.query("INSERT INTO devices (idUser, device) VALUES (\"" + userId + "\" , \"" + deviceId + "\");");
+    console.log("CREATE:", result)
+    return true
+};
 
 module.exports = Profile;

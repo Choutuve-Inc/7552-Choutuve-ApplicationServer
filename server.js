@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // require("./routes/user.routes.js")(app);
-// require("./routes/profile.routes.js")(app);
+require("./routes/profile.routes.js")(app);
 // require("./routes/vote.routes.js")(app);
 // require("./routes/comment.routes.js")(app);
 require("./routes/video.routes.js")(app);
