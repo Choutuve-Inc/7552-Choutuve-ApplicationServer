@@ -19,6 +19,8 @@ require("./routes/profile.routes.js")(app);
 require("./routes/video.routes.js")(app);
 require("./routes/user.routes.js")(app);
 require("./routes/notification.routes.js")(app);
+require("./routes/friendship.routes.js")(app);
+
 
 app.get("/", (req, res) => {
     res.json({ message: "Choutuve, like YouTube." });
