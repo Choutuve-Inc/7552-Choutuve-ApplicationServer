@@ -1,6 +1,6 @@
 const sql = require("./db.js");
 
-const Friendship = function(friendship) {
+const Friendship = function (friendship) {
     this.userA = friendship.userA;
     this.userB = friendship.userB;
 };
@@ -16,6 +16,20 @@ Friendship.requestExists = (idSender, idReceiver) => {
 
     console.log("GET REQUESTED FRIENDSHIP:", result[0])
     return result[0]
+};
+
+Friendship.getRequests = (idReceiver) => {
+    const result = sql.query("SELECT idUserA FROM requested WHERE idUserB = \"" + idReceiver + "\"");
+
+    console.log("GET REQUESTESTS:", result[0])
+
+    requests = []
+
+    for (var i in result) {
+        console.log('Post: ', result[i].idUserA);
+        requests.push(result[i].idUserA)
+    }
+    return requests
 };
 
 Friendship.friendshipExists = (idSender, idReceiver) => {

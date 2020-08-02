@@ -1,5 +1,5 @@
 const Video = require("../models/video.model.js");
-// const Friendlist = require("../models/friendlist.model.js")
+const Friendship = require("../models/friendship.model.js")
 
 const request = require('request')
 
@@ -41,25 +41,20 @@ exports.create = (req, res) => {
     })
 };
 
-exports.getAll = (req, res) => {
+exports.getFeed = (req, res) => {
+    userId = req.body.user
+    token = req.headers.token
+    const friendlist = Friendship.getFriends(userId).join(",")
+    console.log("Friendlist", friendlist)
 
-    // TODO BASE DE DATOS CON FRIENDLIST
-    const userId = req.body.user
-    // console.log("a ver el userId:", userId)
-    // const friendlist = Friendlist.getAllByUserId(userId)
-    // console.log("a ver los amigos:", friendlist)
-    console.log("aaaa", res)
-
-    request.get('https://arcane-thicket-79100.herokuapp.com/videos', {
-        json: {
-            friends: [String(userId)],
-        }
-    }, (error, response, body) => {
+    request.get('https://arcane-thicket-79100.herokuapp.com/videos/' + friendlist + ',' + userId,
+        (error, response, body) => {
             if (error) {
                 res.send(error)
             }
             // console.log("a ver el body: ", body);
             // console.log("JSON: ", JSON.parse(body))
+            res.header("token", token)
             res.send(body)
         });
 };
@@ -94,9 +89,5 @@ exports.delete = (req, res) => {
 };
 
 exports.getAllByUserId = (req, res) => {
-    res.send("Mocked VIDEO works fine :)")
-};
-
-exports.getFeed = (req, res) => {
     res.send("Mocked VIDEO works fine :)")
 };

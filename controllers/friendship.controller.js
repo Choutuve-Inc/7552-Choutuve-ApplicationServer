@@ -1,6 +1,21 @@
 const Friendship = require("../models/friendship.model.js");
 
 exports.getFriendRequests = (req, res) => {
+    if (!req.body || !req.headers.user) {
+        res.status(400).send({
+            message: req.body || "Content can not be empty and the user must be sended in the header!"
+        });
+    }
+
+    user = req.headers.user
+
+    try {
+        requests = Friendship.getRequests(user)
+        res.status(200).send({requests: requests})
+    } catch {
+        res.status(404).send({message: "Error: Friendship requests error"});
+    }
+
     res.send("Mocked PROFILE works fine :)")
 };
 

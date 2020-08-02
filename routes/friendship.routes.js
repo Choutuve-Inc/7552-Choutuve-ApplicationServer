@@ -4,6 +4,9 @@ module.exports = app => {
     // Request friendship
     app.post("/request", friendship.requestFriendship)
 
+    // Get requests
+    app.get("/request", friendship.getFriendRequests)
+
     // Accept friendship
     app.post("/request/confirm", friendship.acceptOrDeclineFriendRequest)
 
