@@ -60,17 +60,21 @@ Friendship.getFriends = (idUser) => {
 
     friendlist = []
 
-    for (var i in result_1) {
-        console.log('Post: ', result_1[i].idUserA);
-        friendlist.push(result_1[i].idUserA)
+    if (result_1.length > 0) {
+        for (var i in result_1) {
+            console.log('Post: ', result_1[i].idUserA);
+            friendlist.push(result_1[i].idUserA)
+        }
     }
 
-    for (var i in result_2) {
-        console.log('Post: ', result_2[i].idUserB);
-        friendlist.push(result_2[i].idUserB)
+    if (result_2.length > 0) {
+        for (var i in result_2) {
+            console.log('Post: ', result_2[i].idUserB);
+            friendlist.push(result_2[i].idUserB)
+        }
     }
 
-    console.log(result_1[0], result_2[0])
+    console.log(friendlist)
 
     return friendlist
 }

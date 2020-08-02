@@ -72,6 +72,7 @@ exports.acceptOrDeclineFriendRequest = (req, res) => {
 
 exports.getFriends = (req, res) => {
     user = req.headers.user
+    
     try {
         friendlist = Friendship.getFriends(user)
         res.status(200).send({friends: friendlist})

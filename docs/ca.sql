@@ -13,13 +13,13 @@ CREATE TABLE IF NOT EXISTS `comment` (
 );
 
 CREATE TABLE friendlist (               
-    idUserA INTEGER NOT NULL,             
-    idUserB INTEGER NOT NULL
+    idUserA varchar(300) NOT NULL,              
+    idUserB varchar(300) NOT NULL
 );    
 
 CREATE TABLE requested (               
-    idUserA INTEGER NOT NULL,             
-    idUserB INTEGER NOT NULL
+    idUserA varchar(300) NOT NULL,           
+    idUserB varchar(300) NOT NULL
 );  
 
 CREATE TABLE devices (               

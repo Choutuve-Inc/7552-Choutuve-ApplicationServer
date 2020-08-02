@@ -3,7 +3,7 @@ module.exports = app => {
 
     app.post("/videos/", videos.create)
 
-    app.post("/feed/", videos.getFeed)
+    app.post("/feed", videos.getFeed)
 
     app.get("/videos/:videoId", videos.getById)
 

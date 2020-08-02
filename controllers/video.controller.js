@@ -42,20 +42,40 @@ exports.create = (req, res) => {
 };
 
 exports.getFeed = (req, res) => {
-    userId = req.body.user
+    userId = req.headers.user
     token = req.headers.token
-    const friendlist = Friendship.getFriends(userId).join(",")
-    console.log("Friendlist", friendlist)
+    const friendlist = Friendship.getFriends(userId)
 
-    request.get('https://arcane-thicket-79100.herokuapp.com/videos/' + friendlist + ',' + userId,
+    users = []
+
+    if (friendlist.length > 0) {
+        for (let u in friendlist) {
+            users.push(u)
+        }
+    }
+    users.push(userId)
+    users.push("uAZVWiaML2cLz7by0bdf6vpsWDq2")
+
+    console.log("Friendlist", users)
+    console.log("a ver esto:", users.toString())
+    console.log("https://arcane-thicket-79100.herokuapp.com/videos?friendList=" + users.toString())
+
+    request.get('https://arcane-thicket-79100.herokuapp.com/videos?friendList=' + users.toString(),
         (error, response, body) => {
             if (error) {
                 res.send(error)
             }
             // console.log("a ver el body: ", body);
             // console.log("JSON: ", JSON.parse(body))
-            res.header("token", token)
-            res.send(body)
+            // res.send(response)
+
+            if (response.statusCode != 400) {
+                res.header("token", token)
+                res.status(200).send(body)
+            }
+            else {
+                res.status(404).send({message: "Error: Is not possible to get the friend list"});
+            }
         });
 };
 
