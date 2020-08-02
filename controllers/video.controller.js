@@ -54,7 +54,6 @@ exports.getFeed = (req, res) => {
         }
     }
     users.push(userId)
-    users.push("uAZVWiaML2cLz7by0bdf6vpsWDq2")
 
     console.log("Friendlist", users)
     console.log("a ver esto:", users.toString())
