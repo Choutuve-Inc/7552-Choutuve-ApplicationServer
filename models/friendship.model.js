@@ -61,6 +61,7 @@ Friendship.getFriends = (idUser) => {
     friendlist = []
 
     if (result_1.length > 0) {
+        console.log("n entro", result_1)
         for (var i in result_1) {
             console.log('Post: ', result_1[i].idUserA);
             friendlist.push(result_1[i].idUserA)
@@ -74,7 +75,7 @@ Friendship.getFriends = (idUser) => {
         }
     }
 
-    console.log(friendlist)
+    console.log("Es esto:", friendlist)
 
     return friendlist
 }

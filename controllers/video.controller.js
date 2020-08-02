@@ -45,13 +45,17 @@ exports.getFeed = (req, res) => {
     userId = req.headers.user
     token = req.headers.token
     const friendlist = Friendship.getFriends(userId)
-
+    console.log("esto llega", friendlist)
     users = []
 
     if (friendlist.length > 0) {
-        for (let u in friendlist) {
-            users.push(u)
+        for (var i = 0; i < friendlist.length; i++) {
+            users.push(friendlist[i]);
         }
+        // for (let u in friendlist) {
+        //     console.log("a ver", friendlist[u])
+        //     users.push(u)
+        // }
     }
     users.push(userId)
 
@@ -73,7 +77,7 @@ exports.getFeed = (req, res) => {
                 res.status(200).send(body)
             }
             else {
-                res.status(404).send({message: "Error: Is not possible to get the friend list"});
+                res.status(404).send({ message: "Error: Is not possible to get the friend list" });
             }
         });
 };
