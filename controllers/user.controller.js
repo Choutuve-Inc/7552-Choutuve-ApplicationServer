@@ -170,23 +170,12 @@ exports.updateUser = (req, res) => {
         });
     }
 
-    const user = new User({
-        email: req.body.email,
-        phone: req.body.phone,
-        username: req.body.username,
-        password: req.body.password,
-        tipo: req.body.tipo,
-        image: req.body.image
-    });
-
     request.patch('https://serene-shelf-10674.herokuapp.com/users/' + req.params.userId, {
         json: {
-            email: user.email,
-            phone: user.phone,
-            username: user.username,
-            password: user.password,
-            tipo: user.tipo,
-            image: user.image
+            Nemail: req.body.Nemail,
+            Nphone: req.body.Nphone,
+            Nusername: req.body.Nusername,
+            Nimage: req.body.Nimage
         }
     }, (error, response, body) => {
         if (error) {
