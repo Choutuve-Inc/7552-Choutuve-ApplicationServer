@@ -136,13 +136,17 @@ exports.getUsers = (req, res) => {
     }
 
     request.get('https://serene-shelf-10674.herokuapp.com/users',
-        (error, response, body) => {
-            if (error) {
-                res.send(error)
-                return
-            }
-            res.send(body)
-        })
+    (error, response, body) => {
+        if (error) {
+            res.send(error)
+        }
+        if (response.statusCode == 200) {
+            res.status(200).send(body)
+        }
+        else {
+            res.status(404).send({ message: "Error retrieving user list" });
+        }
+    });
 };
 
 exports.getUser = (req, res) => {
@@ -152,14 +156,18 @@ exports.getUser = (req, res) => {
         });
     }
 
-    request.get('https://serene-shelf-10674.herokuapp.com/users/' + req.params.id,
-        (error, response, body) => {
-            if (error) {
-                res.send(error)
-                return
-            }
-            res.send(body)
-        })
+    request.get('https://serene-shelf-10674.herokuapp.com/users/' + req.params.userId,
+    (error, response, body) => {
+        if (error) {
+            res.send(error)
+        }
+        if (response.statusCode == 200) {
+            res.status(200).send(body)
+        }
+        else {
+            res.status(404).send({ message: "Error retrieving user" });
+        }
+    });
 };
 
 
@@ -180,10 +188,14 @@ exports.updateUser = (req, res) => {
     }, (error, response, body) => {
         if (error) {
             res.send(error)
-            return
         }
-        res.send(body)
-    })
+        if (response.statusCode == 200) {
+            res.status(200).send(body)
+        }
+        else {
+            res.status(404).send({ message: "Error, user not patched" });
+        }
+    });
 };
 
 exports.deleteUser = (req, res) => {
@@ -222,13 +234,17 @@ exports.reset = (req, res) => {
             email: email,
             tipo: tipo,
         }
-    }, (error, response, body) => {
+    },(error, response, body) => {
         if (error) {
             res.send(error)
-            return
         }
-        res.send(body)
-    })
+        if (response.statusCode == 200) {
+            res.status(200).send(body)
+        }
+        else {
+            res.status(404).send({ message: "Error: User not reseted" });
+        }
+    });
 };
 
 exports.key = (req, res) => {
