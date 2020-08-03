@@ -7,7 +7,7 @@ module.exports = app => {
 
     app.get("/videos/:vidID/likes", comments.getLikes)
 
-    app.post("/videos/:vidID/likes", comments.getLikes)
+    app.post("/videos/:vidID/likes", comments.setLikes)
 
     app.delete("/videos/:vidID/comments", comments.delete)
 
