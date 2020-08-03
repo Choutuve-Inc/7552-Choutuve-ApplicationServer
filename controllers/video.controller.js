@@ -10,34 +10,31 @@ exports.create = (req, res) => {
         });
     }
 
-    const video = new Video({
-        user: req.body.user,
-        title: req.body.title,
-        description: req.body.description,
-        date: req.body.date,
-        url: req.body.url,
-        thumbnail: req.body.thumbnail,
-        size: req.body.size
-    });
-
     request.post('https://arcane-thicket-79100.herokuapp.com/videos', {
         json: {
-            user: video.user,
-            title: video.title,
-            description: video.description,
-            date: video.date,
-            url: video.url,
-            thumbnail: video.thumbnail,
-            size: video.size
+            user: req.body.user,
+            token: req.body.token,
+            title: req.body.title,
+            description: req.body.description,
+            date: req.body.date,
+            url: req.body.url,
+            thumbnail: req.body.thumbnail,
+            private: req.body.private,
+            size: req.body.size
         }
-    }, (error, response) => {
+    }, (error, response, body) => {
         if (error) {
-            // console.error(error)
             res.send(error)
             return
         }
-        res.send(response)
-        // console.log(`statusCode: ${response.statusCode}`)
+
+        if (response.statusCode == 200) {
+            res.send("Success")
+        }
+        else {
+            res.statusMessage = "Error: Uploading video";
+            res.status(404).end();
+        }
     })
 };
 
@@ -65,7 +62,6 @@ exports.getFeed = (req, res) => {
                 user: userId,
                 token, token
             }
-
         },
         (error, response, body) => {
             if (error) {
