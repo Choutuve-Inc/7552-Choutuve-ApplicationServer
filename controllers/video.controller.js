@@ -52,10 +52,6 @@ exports.getFeed = (req, res) => {
         for (var i = 0; i < friendlist.length; i++) {
             users.push(friendlist[i]);
         }
-        // for (let u in friendlist) {
-        //     console.log("a ver", friendlist[u])
-        //     users.push(u)
-        // }
     }
     users.push(userId)
 
@@ -64,22 +60,25 @@ exports.getFeed = (req, res) => {
     console.log("https://arcane-thicket-79100.herokuapp.com/videos?friendList=" + users.toString())
 
     request.get('https://arcane-thicket-79100.herokuapp.com/videos?friendList=' + users.toString(),
+        {
+            headers: {
+                user: userId,
+                token, token
+            }
+
+        },
         (error, response, body) => {
             if (error) {
                 res.send(error)
             }
-            // console.log("a ver el body: ", body);
-            // console.log("JSON: ", JSON.parse(body))
-            // res.send(response)
-
             if (response.statusCode != 400) {
-                res.header("token", token)
                 res.status(200).send(body)
             }
             else {
                 res.status(404).send({ message: "Error: Is not possible to get the friend list" });
             }
         });
+
 };
 
 exports.getById = (req, res) => {

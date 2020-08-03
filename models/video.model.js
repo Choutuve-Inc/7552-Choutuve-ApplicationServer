@@ -10,6 +10,4 @@ const Video = function(video) {
     this.size = video.size
 };
 
-// TODO
-
 module.exports = Video;
