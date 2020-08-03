@@ -244,17 +244,12 @@ exports.reset = (req, res) => {
         });
     }
 
-    password = req.body.password
-    token = req.body.token
-    email = req.body.email
-    tipo = req.body.tipo
-
     request.post('https://serene-shelf-10674.herokuapp.com/reset', {
         json: {
-            Npassword: password,
-            token: token,
-            email: email,
-            tipo: tipo,
+            Npassword: req.body.Npassword,
+            token: req.body.token,
+            email: req.body.email,
+            tipo: req.body.tipo,
         }
     },(error, response, body) => {
         if (error) {
