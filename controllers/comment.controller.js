@@ -1,3 +1,4 @@
+const request = require('request')
 const Comment = require("../models/comment.model.js");
 
 // exports.getFeed = (req, res) => {
@@ -49,7 +50,7 @@ exports.create = (req, res) => {
 
     request.post('https://arcane-thicket-79100.herokuapp.com/videos/' + req.params.vidID + '/comments', {
         json: {
-            user: req.body.userId,
+            user: req.body.user,
             token: req.body.token,
             text: req.body.text,
         }
@@ -57,8 +58,9 @@ exports.create = (req, res) => {
         if (error) {
             res.send(error)
         }
+        console.log("respo:", response)
         if (response.statusCode == 200) {
-            res.status(200).send(body)
+            res.status(200).send({message: "Success"})
         }
         else {
             res.status(404).send({ message: "Error: Comment not created" });
