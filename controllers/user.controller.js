@@ -152,7 +152,7 @@ exports.getUser = (req, res) => {
         });
     }
 
-    request.get('https://serene-shelf-10674.herokuapp.com/users/' + req.params.userId,
+    request.get('https://serene-shelf-10674.herokuapp.com/users/' + req.params.id,
         (error, response, body) => {
             if (error) {
                 res.send(error)
@@ -228,7 +228,7 @@ exports.reset = (req, res) => {
 
     request.post('https://serene-shelf-10674.herokuapp.com/reset', {
         json: {
-            password: password,
+            Npassword: password,
             token: token,
             email: email,
             tipo: tipo,
