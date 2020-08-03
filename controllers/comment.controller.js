@@ -114,7 +114,7 @@ exports.getLikes = (req, res) => {
 
 };
 
-exports.getLikes = (req, res) => {
+exports.setLikes = (req, res) => {
 
     if (!req.body) {
         res.status(400).send({
