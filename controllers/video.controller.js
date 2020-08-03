@@ -107,5 +107,21 @@ exports.delete = (req, res) => {
 };
 
 exports.getAllByUserId = (req, res) => {
-    res.send("Mocked VIDEO works fine :)")
-};
+    if (!req.body) {
+        res.status(400).send({
+            message: req.body || "Content can not be empty!"
+        });
+    }
+
+    request.get('https://arcane-thicket-79100.herokuapp.com/videos/user/' + req.params.userId,
+    (error, response, body) => {
+        if (error) {
+            res.send(error)
+        }
+        if (response.statusCode != 400) {
+            res.status(200).send(body)
+        }
+        else {
+            res.status(404).send({ message: "Error: Is not possible to get the videos of the user" });
+        }
+    });};

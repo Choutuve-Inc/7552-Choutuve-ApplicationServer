@@ -7,7 +7,7 @@ module.exports = app => {
 
     app.get("/videos/:videoId", videos.getById)
 
-    app.get("/videos/:userId", videos.getAllByUserId)
+    app.get("/videos/user/:userId", videos.getAllByUserId)
 
     app.delete("/videos/:videoId", videos.delete)
 
