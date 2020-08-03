@@ -170,6 +170,26 @@ exports.getUser = (req, res) => {
     });
 };
 
+exports.getUserList = (req, res) => {
+    if (!req.body) {
+        res.status(400).send({
+            message: req.body || "Content can not be empty!"
+        });
+    }
+
+    request.get('https://serene-shelf-10674.herokuapp.com/users?list=' + req.params.userIds,
+    (error, response, body) => {
+        if (error) {
+            res.send(error)
+        }
+        if (response.statusCode == 200) {
+            res.status(200).send(body)
+        }
+        else {
+            res.status(404).send({ message: "Error retrieving user list" });
+        }
+    });
+};
 
 exports.updateUser = (req, res) => {
     if (!req.body) {

@@ -11,11 +11,13 @@ module.exports = app => {
 
     app.get("/users", users.getUsers)
 
-    app.get("/users/:id", users.getUser)
+    app.get("/users/:userId", users.getUser)
 
-    app.patch("/users/:id", users.updateUser)
+    app.get("/users?list=:userIds", users.getUserList)
 
-    app.delete("/users/:id", users.deleteUser)
+    app.patch("/users/:userId", users.updateUser)
+
+    app.delete("/users/:userId", users.deleteUser)
 
     app.post("/reset", users.reset)
 
