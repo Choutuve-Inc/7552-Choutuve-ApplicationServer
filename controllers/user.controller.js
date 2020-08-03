@@ -99,13 +99,19 @@ exports.create = (req, res) => {
             tipo: user.tipo,
             image: user.image
         }
-    }, (error, response, body) => {
+    },
+    (error, response, body) => {
         if (error) {
             res.send(error)
-            return
         }
-        res.send(body)
-    })
+        if (response.statusCode == 200) {
+            res.status(200).send(body)
+        }
+        else {
+            res.status(404).send({ message: "Error retrieving likes" });
+        }
+    });
+    
 };
 
 exports.token = (req, res) => {
