@@ -10,7 +10,7 @@
     },
     "scripts": {
         "start": "node server.js",
-        "test": "nyc --reporter=text mocha"
+        "test": "mocha --timeout 10000"
     },
     "dependencies": {
         "body-parser": "^1.19.0",
