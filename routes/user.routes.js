@@ -13,7 +13,7 @@ module.exports = app => {
 
     app.get("/users/:userId", users.getUser)
 
-    app.get("/users?list=:userIds", users.getUserList)
+    app.get("/users/list/:userIds", users.getUserList)
 
     app.patch("/users/:userId", users.updateUser)
 

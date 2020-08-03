@@ -177,6 +177,8 @@ exports.getUserList = (req, res) => {
         });
     }
 
+    console.log('a verrrrr: ', req.params.userIds)
+
     request.get('https://serene-shelf-10674.herokuapp.com/users?list=' + req.params.userIds,
     (error, response, body) => {
         if (error) {
