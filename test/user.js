@@ -9,27 +9,6 @@ chai.use(chaiHttp);
 
 describe('Users', () => {
 
-  describe('Create new user: ', () => {
-    it('should create a new user', (done) => {
-      chai.request(URL)
-        .post('/create')
-        .send(
-          {
-            "email": "maildedumi@dumi.com",
-            "password": "dumi",
-            "tipo": "mailPass",
-            "image": "https://firebasestorage.googleapis.com/v0/b/chotuve-android-media.appspot.com/o/userPic%2F7e08599a-87c1-408a-92c0-a100f3af7ae8?alt=media&token=f32c710f-271f-4233-8294-9576c0d3c101",
-            "phone": "+541536701234",
-            "username": "dumi"
-          }
-        )
-        .end(function (err, res) {
-          expect(res).to.have.status(200);
-          done();
-        });
-    });
-  });
-
   describe('Login: ', () => {
     it('should login one user', (done) => {
       chai.request(URL)

@@ -11,13 +11,13 @@ const Comment = function (comment) {
 Comment.create = (comment, result) => {
     sql.query("INSERT INTO comment SET ?", comment, (err, res) => {
         if (err) {
-            logger.error('ERROR:', err)
+            logger.error(err)
 
             result(err, null);
             return;
         }
 
-        logger.info('CREATED: New comment created')
+        logger.info('New comment created')
         result(null, { id: res.insertId, ...comment });
     });
 };
@@ -25,14 +25,14 @@ Comment.create = (comment, result) => {
 Comment.getAllByVideoId = (videoId, result) => {
     sql.query(`SELECT * FROM comment WHERE videoId = ${videoId}`, (err, res) => {
         if (err) {
-            logger.error('ERROR:', err)
+            logger.error(err)
 
             result(err, null);
             return;
         }
 
         if (res.length) {
-            logger.info('[FOUND] Comments: ', res[0])
+            logger.info(res[0])
             result(null, res[0]);
             return;
         }
@@ -44,7 +44,7 @@ Comment.getAllByVideoId = (videoId, result) => {
 Comment.delete = (id, result) => {
     sql.query("DELETE FROM comment WHERE id = ?", id, (err, res) => {
         if (err) {
-            logger.error('ERROR:', err)
+            logger.error(err)
 
             result(null, err);
             return;
@@ -55,7 +55,7 @@ Comment.delete = (id, result) => {
             return;
         }
 
-        logger.info("Deleted comment with id: ", id);
+        logger.info(res[0])
         result(null, res);
     });
 };

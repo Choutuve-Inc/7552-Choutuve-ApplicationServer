@@ -12,7 +12,7 @@ const User = function(user) {
 
 User.create = (userId, deviceId) => {
     const result = sql.query("INSERT INTO devices (idUser, device) VALUES (\"" + userId + "\" , \"" + deviceId + "\");");
-    logger.info("CREATE:", result)
+    logger.info(result)
     return true
 };
 
