@@ -1,6 +1,9 @@
 const Friendship = require("../models/friendship.model.js");
+const logger = require('pino')()
 
 exports.getFriendRequests = (req, res) => {
+    logger.info('Endpoint GET /request requested')
+
     if (!req.body || !req.headers.user) {
         res.status(400).send({
             message: req.body || "Content can not be empty and the user must be sended in the header!"
@@ -13,6 +16,7 @@ exports.getFriendRequests = (req, res) => {
         requests = Friendship.getRequests(user)
         res.status(200).send({requests: requests})
     } catch {
+        logger.error('ERROR: Friendship requests error')
         res.status(404).send({message: "Error: Friendship requests error"});
     }
 
@@ -20,6 +24,8 @@ exports.getFriendRequests = (req, res) => {
 };
 
 exports.requestFriendship = (req, res) => {
+    logger.info('Endpoint POST /request requested')
+
     if (!req.body || !req.headers.user) {
         res.status(400).send({
             message: req.body || "Content can not be empty and the user must be sended in the header!"
@@ -37,11 +43,14 @@ exports.requestFriendship = (req, res) => {
         res.status(200).send({message: "Friendship sended"})
     }
     else {
+        logger.error('Error: Friendship or request exists')
         res.status(404).send({message: "Error: Friendship or request exists"});
     }
 };
 
 exports.acceptOrDeclineFriendRequest = (req, res) => {
+    logger.info('Endpoint POST /request/confirm requested')
+
     if (!req.body || !req.headers.user) {
         res.status(400).send({
             message: req.body || "Content can not be empty and the user must be sended in the header!"
@@ -64,13 +73,15 @@ exports.acceptOrDeclineFriendRequest = (req, res) => {
             Friendship.declineRequest(userA, userB)
             res.status(200).send({message: "Friendship declined"})
         }
-        console.log("entre")
     } else {
         res.status(404).send({message: "Error: friendship request doesnt exists!"});
+        logger.error('Error: friendship request doesnt exists!')
     }
 };
 
 exports.getFriends = (req, res) => {
+    logger.info('Endpoint GET /friendlist requested')
+
     user = req.headers.user
     
     try {
@@ -78,6 +89,7 @@ exports.getFriends = (req, res) => {
         res.status(200).send({friends: friendlist})
     } catch {
         res.status(404).send({message: "Error: Friendlist not found"});
+        logger.error('Error: Friendlist not found')
     }
 
 };

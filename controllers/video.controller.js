@@ -1,9 +1,11 @@
-const Video = require("../models/video.model.js");
 const Friendship = require("../models/friendship.model.js")
 
 const request = require('request')
+const logger = require('pino')()
 
 exports.create = (req, res) => {
+    logger.info('Endpoint POST /videos requested')
+
     if (!req.body) {
         res.status(400).send({
             message: req.body || "Content can not be empty!"
@@ -25,6 +27,7 @@ exports.create = (req, res) => {
     }, (error, response, body) => {
         if (error) {
             res.send(error)
+            logger.error('Error:', error)
             return
         }
 
@@ -33,16 +36,18 @@ exports.create = (req, res) => {
         }
         else {
             res.statusMessage = "Error: Uploading video";
+            logger.error('Error: Uploading video')
             res.status(404).end();
         }
     })
 };
 
 exports.getFeed = (req, res) => {
+    logger.info('Endpoint GET /feed requested')
+
     userId = req.headers.user
     token = req.headers.token
     const friendlist = Friendship.getFriends(userId)
-    console.log("esto llega", friendlist)
     users = []
 
     if (friendlist.length > 0) {
@@ -51,10 +56,6 @@ exports.getFeed = (req, res) => {
         }
     }
     users.push(userId)
-
-    console.log("Friendlist", users)
-    console.log("a ver esto:", users.toString())
-    console.log("https://arcane-thicket-79100.herokuapp.com/videos?friendList=" + users.toString())
 
     request.get('https://arcane-thicket-79100.herokuapp.com/videos?friendList=' + users.toString(),
         {
@@ -65,12 +66,14 @@ exports.getFeed = (req, res) => {
         },
         (error, response, body) => {
             if (error) {
+                logger.error('Error:', error)
                 res.send(error)
             }
             if (response.statusCode != 400) {
                 res.status(200).send(body)
             }
             else {
+                logger.error('Error: Is not possible to get the friend list')
                 res.status(404).send({ message: "Error: Is not possible to get the friend list" });
             }
         });
@@ -78,20 +81,20 @@ exports.getFeed = (req, res) => {
 };
 
 exports.getById = (req, res) => {
+    logger.info('Endpoint GET /videos/:videoId requested')
 
     request.get('https://arcane-thicket-79100.herokuapp.com/videos/' + req.params.videoId,
         (error, response, body) => {
             if (error) {
-                console.log(error);
+                logger.error('Error:', error)
                 res.send(error)
             }
-            console.log("Response: ", response);
-            console.log("JSON: ", JSON.parse(body))
             res.send(JSON.parse(body))
         });
 };
 
 exports.delete = (req, res) => {
+    logger.info('Endpoint DELETE /videos/:videoId requested')
 
     request.delete('https://arcane-thicket-79100.herokuapp.com/videos/' + req.params.videoId,
         (error, response, body) => {
@@ -100,13 +103,16 @@ exports.delete = (req, res) => {
                 res.send('Video eliminado con exito (Video ID: ' + req.params.videoId + ')')
             }
             else {
-                res.statusMessage = "Error eliminando el video";
+                logger.error('Error:', error)
+                res.statusMessage = "Error: Is not possible to delete the video";
                 res.status(404).end();
             }
         });
 };
 
 exports.getAllByUserId = (req, res) => {
+    logger.info('Endpoint GET /videos/user/:userId requested')
+
     if (!req.body) {
         res.status(400).send({
             message: req.body || "Content can not be empty!"
@@ -116,12 +122,14 @@ exports.getAllByUserId = (req, res) => {
     request.get('https://arcane-thicket-79100.herokuapp.com/videos/user/' + req.params.userId,
     (error, response, body) => {
         if (error) {
+            logger.error('Error:', error)
             res.send(error)
         }
         if (response.statusCode != 400) {
             res.status(200).send(body)
         }
         else {
+            logger.error('Error: Is not possible to get the videos of the user')
             res.status(404).send({ message: "Error: Is not possible to get the videos of the user" });
         }
     });};

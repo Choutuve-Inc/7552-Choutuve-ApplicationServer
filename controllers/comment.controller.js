@@ -1,47 +1,10 @@
 const request = require('request')
 const Comment = require("../models/comment.model.js");
-
-// exports.getFeed = (req, res) => {
-//     userId = req.headers.user
-//     token = req.headers.token
-//     const friendlist = Friendship.getFriends(userId)
-//     console.log("esto llega", friendlist)
-//     users = []
-
-//     if (friendlist.length > 0) {
-//         for (var i = 0; i < friendlist.length; i++) {
-//             users.push(friendlist[i]);
-//         }
-//     }
-//     users.push(userId)
-
-//     console.log("Friendlist", users)
-//     console.log("a ver esto:", users.toString())
-//     console.log("https://arcane-thicket-79100.herokuapp.com/videos?friendList=" + users.toString())
-
-//     request.get('https://arcane-thicket-79100.herokuapp.com/videos?friendList=' + users.toString(),
-//         {
-//             headers: {
-//                 user: userId,
-//                 token, token
-//             }
-
-//         },
-//         (error, response, body) => {
-//             if (error) {
-//                 res.send(error)
-//             }
-//             if (response.statusCode != 400) {
-//                 res.status(200).send(body)
-//             }
-//             else {
-//                 res.status(404).send({ message: "Error: Is not possible to get the friend list" });
-//             }
-//         });
-
-// };
+const logger = require('pino')()
 
 exports.create = (req, res) => {
+    logger.info('Endpoint POST /videos/:vidID/comments requested')
+
     if (!req.body) {
         res.status(400).send({
             message: req.body || "Content can not be empty!"
@@ -56,9 +19,10 @@ exports.create = (req, res) => {
         }
     }, (error, response, body) => {
         if (error) {
+            logger.error('ERROR:', err)
+
             res.send(error)
         }
-        console.log("respo:", response)
         if (response.statusCode == 200) {
             res.status(200).send({message: "Success"})
         }
@@ -69,6 +33,7 @@ exports.create = (req, res) => {
 }
 
 exports.getComments = (req, res) => {
+    logger.info('Endpoint GET /videos/:vidID/comments requested')
 
     if (!req.body) {
         res.status(400).send({
@@ -79,6 +44,8 @@ exports.getComments = (req, res) => {
     request.get('https://arcane-thicket-79100.herokuapp.com/videos/' + req.params.vidID + '/comments',
         (error, response, body) => {
             if (error) {
+                logger.error('ERROR:', err)
+
                 res.send(error)
             }
             if (response.statusCode == 200) {
@@ -92,6 +59,7 @@ exports.getComments = (req, res) => {
 };
 
 exports.getLikes = (req, res) => {
+    logger.info('Endpoint GET /videos/:vidID/likes requested')
 
     if (!req.body) {
         res.status(400).send({
@@ -102,6 +70,8 @@ exports.getLikes = (req, res) => {
     request.get('https://arcane-thicket-79100.herokuapp.com/videos/' + req.params.vidID + '/likes',
         (error, response, body) => {
             if (error) {
+                logger.error('ERROR:', err)
+
                 res.send(error)
             }
             if (response.statusCode == 200) {
@@ -115,6 +85,7 @@ exports.getLikes = (req, res) => {
 };
 
 exports.setLikes = (req, res) => {
+    logger.info('Endpoint POST /videos/:vidID/likes requested')
 
     if (!req.body) {
         res.status(400).send({
@@ -131,6 +102,8 @@ exports.setLikes = (req, res) => {
     },
         (error, response, body) => {
             if (error) {
+                logger.error('ERROR:', err)
+
                 res.send(error)
             }
             if (response.statusCode == 200) {
@@ -144,8 +117,12 @@ exports.setLikes = (req, res) => {
 };
 
 exports.delete = (req, res) => {
+    logger.info('Endpoint DELETE /videos/:vidID/comments requested')
+
     Comment.delete(req.params.commentId, (err) => {
         if (err) {
+            logger.error('ERROR:', err)
+
             res.status(500).send({
                 message:
                     err.message || "Some error occurred while removing comment."

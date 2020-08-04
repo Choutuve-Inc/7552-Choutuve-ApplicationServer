@@ -1,8 +1,11 @@
 const User = require("../models/user.model.js");
 const Login = require("../models/login.model.js")
 const request = require('request')
+const logger = require('pino')()
 
 exports.login = (req, res) => {
+    logger.info('Endpoint POST /login requested')
+
     if (!req.body) {
         res.status(400).send({
             message: req.body || "Content can not be empty!"
@@ -39,12 +42,15 @@ exports.login = (req, res) => {
             }
         }
         else {
+            logger.error('Error:', error)
             res.status(404).send(body);
         }
     })
 };
 
 exports.logout = (req, res) => {
+    logger.info('Endpoint POST /logout requested')
+
     if (!req.body) {
         res.status(400).send({
             message: req.body || "Content can not be empty!"
@@ -59,7 +65,6 @@ exports.logout = (req, res) => {
     }, (error, response, body) => {
         if (response.statusCode == 204) {
             deviceId = req.body.device
-            console.log("Device a borrar:", deviceId)
 
             const user = User.getUserByDevice(deviceId)
             if (user != undefined) {
@@ -68,6 +73,7 @@ exports.logout = (req, res) => {
             res.status(200).send(body)
         }
         else {
+            logger.error('Error:', error)
             res.status(404).send(body);
         }
     })
@@ -75,6 +81,8 @@ exports.logout = (req, res) => {
 };
 
 exports.create = (req, res) => {
+    logger.info('Endpoint POST /create requested')
+
     if (!req.body) {
         res.status(400).send({
             message: req.body || "Content can not be empty!"
@@ -102,6 +110,7 @@ exports.create = (req, res) => {
     },
     (error, response, body) => {
         if (error) {
+            logger.error('Error:', error)
             res.send(error)
         }
         if (response.statusCode == 200) {
@@ -115,6 +124,8 @@ exports.create = (req, res) => {
 };
 
 exports.token = (req, res) => {
+    logger.info('Endpoint POST /token requested')
+
     if (!req.body) {
         res.status(400).send({
             message: req.body || "Content can not be empty!"
@@ -127,6 +138,7 @@ exports.token = (req, res) => {
         }
     }, (error, response, body) => {
         if (error) {
+            logger.error('Error:', error)
             res.send(error)
             return
         }
@@ -135,6 +147,8 @@ exports.token = (req, res) => {
 };
 
 exports.getUsers = (req, res) => {
+    logger.info('Endpoint GET /users requested')
+
     if (!req.body) {
         res.status(400).send({
             message: req.body || "Content can not be empty!"
@@ -144,6 +158,7 @@ exports.getUsers = (req, res) => {
     request.get('https://serene-shelf-10674.herokuapp.com/users',
     (error, response, body) => {
         if (error) {
+            logger.error('Error:', error)
             res.send(error)
         }
         if (response.statusCode == 200) {
@@ -156,6 +171,8 @@ exports.getUsers = (req, res) => {
 };
 
 exports.getUser = (req, res) => {
+    logger.info('Endpoint GET /users/:userId requested')
+
     if (!req.body) {
         res.status(400).send({
             message: req.body || "Content can not be empty!"
@@ -165,6 +182,7 @@ exports.getUser = (req, res) => {
     request.get('https://serene-shelf-10674.herokuapp.com/users/' + req.params.userId,
     (error, response, body) => {
         if (error) {
+            logger.error('Error:', error)
             res.send(error)
         }
         if (response.statusCode == 200) {
@@ -177,17 +195,18 @@ exports.getUser = (req, res) => {
 };
 
 exports.getUserList = (req, res) => {
+    logger.info('Endpoint GET /user/list/:userIds requested')
+
     if (!req.body) {
         res.status(400).send({
             message: req.body || "Content can not be empty!"
         });
     }
 
-    console.log('a verrrrr: ', req.params.userIds)
-
     request.get('https://serene-shelf-10674.herokuapp.com/users?list=' + req.params.userIds,
     (error, response, body) => {
         if (error) {
+            logger.error('Error:', error)
             res.send(error)
         }
         if (response.statusCode == 200) {
@@ -200,6 +219,8 @@ exports.getUserList = (req, res) => {
 };
 
 exports.updateUser = (req, res) => {
+    logger.info('Endpoint PATCH /users/:userId requested')
+
     if (!req.body) {
         res.status(400).send({
             message: req.body || "Content can not be empty!"
@@ -215,6 +236,7 @@ exports.updateUser = (req, res) => {
         }
     }, (error, response, body) => {
         if (error) {
+            logger.error('Error:', error)
             res.send(error)
         }
         if (response.statusCode == 200) {
@@ -227,6 +249,8 @@ exports.updateUser = (req, res) => {
 };
 
 exports.deleteUser = (req, res) => {
+    logger.info('Endpoint DELETE /users/:userId requested')
+
     if (!req.body) {
         res.status(400).send({
             message: req.body || "Content can not be empty!"
@@ -236,6 +260,7 @@ exports.deleteUser = (req, res) => {
     request.delete('https://serene-shelf-10674.herokuapp.com/users/' + req.params.userId,
         (error, response, body) => {
             if (error) {
+                logger.error('Error:', error)
                 res.send(error)
                 return
             }
@@ -244,6 +269,8 @@ exports.deleteUser = (req, res) => {
 };
 
 exports.reset = (req, res) => {
+    logger.info('Endpoint POST /reset requested')
+
     if (!req.body) {
         res.status(400).send({
             message: req.body || "Content can not be empty!"
@@ -259,6 +286,7 @@ exports.reset = (req, res) => {
         }
     },(error, response, body) => {
         if (error) {
+            logger.error('Error:', error)
             res.send(error)
         }
         if (response.statusCode == 200) {
@@ -271,6 +299,8 @@ exports.reset = (req, res) => {
 };
 
 exports.key = (req, res) => {
+    logger.info('Endpoint POST /key requested')
+
     if (!req.body) {
         res.status(400).send({
             message: req.body || "Content can not be empty!"
@@ -285,6 +315,7 @@ exports.key = (req, res) => {
         }
     }, (error, response, body) => {
         if (error) {
+            logger.error('Error:', error)
             res.send(error)
             return
         }

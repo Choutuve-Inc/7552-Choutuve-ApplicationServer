@@ -21,6 +21,7 @@
         "firebase-admin": "^8.13.0",
         "mocha": "^8.1.0",
         "mysql": "^2.18.1",
+        "pino": "^6.5.0",
         "request": "^2.88.2",
         "sync-mysql": "^3.0.1"
     }

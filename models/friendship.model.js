@@ -1,4 +1,5 @@
 const sql = require("./db.js");
+const logger = require('pino')()
 
 const Friendship = function (friendship) {
     this.userA = friendship.userA;
@@ -7,26 +8,25 @@ const Friendship = function (friendship) {
 
 Friendship.request = (idSender, idReceiver) => {
     const result = sql.query("INSERT INTO requested (idUserA, idUserB) VALUES (\"" + idSender + "\" , \"" + idReceiver + "\");");
-    console.log("CREATE:", result)
+    logger.info(result)
     return true
 };
 
 Friendship.requestExists = (idSender, idReceiver) => {
     const result = sql.query("SELECT * FROM requested WHERE idUserA = \"" + idSender + "\" AND idUserB = \"" + idReceiver + "\"");
 
-    console.log("GET REQUESTED FRIENDSHIP:", result[0])
+    logger.info(result[0])
     return result[0]
 };
 
 Friendship.getRequests = (idReceiver) => {
     const result = sql.query("SELECT idUserA FROM requested WHERE idUserB = \"" + idReceiver + "\"");
 
-    console.log("GET REQUESTESTS:", result[0])
+    logger.info(result[0])
 
     requests = []
 
     for (var i in result) {
-        console.log('Post: ', result[i].idUserA);
         requests.push(result[i].idUserA)
     }
     return requests
@@ -36,7 +36,7 @@ Friendship.friendshipExists = (idSender, idReceiver) => {
     const result_1 = sql.query("SELECT * FROM friendlist WHERE idUserA = \"" + idSender + "\" AND idUserB = \"" + idReceiver + "\"");
     const result_2 = sql.query("SELECT * FROM friendlist WHERE idUserA = \"" + idReceiver + "\" AND idUserB = \"" + idSender + "\"");
 
-    console.log("FRIENDSHIP EXISTS:", (result_1[0] || result_2[0]))
+    logger.info((result_1[0] || result_2[0]))
     return (result_1[0] || result_2[0])
 };
 
@@ -61,21 +61,16 @@ Friendship.getFriends = (idUser) => {
     friendlist = []
 
     if (result_1.length > 0) {
-        console.log("n entro", result_1)
         for (var i in result_1) {
-            console.log('Post: ', result_1[i].idUserA);
             friendlist.push(result_1[i].idUserA)
         }
     }
 
     if (result_2.length > 0) {
         for (var i in result_2) {
-            console.log('Post: ', result_2[i].idUserB);
             friendlist.push(result_2[i].idUserB)
         }
     }
-
-    console.log("Es esto:", friendlist)
 
     return friendlist
 }

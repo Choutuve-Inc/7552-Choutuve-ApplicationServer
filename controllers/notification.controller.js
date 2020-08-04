@@ -6,12 +6,13 @@ const User = require("../models/user.model.js");
 
 const admin = require("firebase-admin");
 const serviceAccount = require("../config/keys.json");
-
-const request = require('request')
+const logger = require('pino')()
 
 let initialized = false;
 
 exports.send = (req, res) => {
+    logger.info('Endpoint POST /notifications requested')
+
     if (!req.body) {
         res.status(400).send({
             message: req.body || "Content can not be empty!"
@@ -32,15 +33,13 @@ exports.send = (req, res) => {
         message: req.body.message,
     });
 
-    console.log("esto tiene: ", notification.idReceiver)
     const response = User.getDeviceID(notification.idReceiver)
     let deviceId = undefined
     if (response != undefined) {
         deviceId = response.device
     }
-    console.log(deviceId)
+
     if ((deviceId != undefined) && (User.getUserByDevice(deviceId) != undefined)) {
-        console.log("a ver el deviceid:", deviceId)
         let message = {
             data: {
                 title: "Choutuve",

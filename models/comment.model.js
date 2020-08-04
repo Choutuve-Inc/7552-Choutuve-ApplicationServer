@@ -1,4 +1,5 @@
 const sql = require("./db.js");
+const logger = require('pino')()
 
 const Comment = function (comment) {
     this.userId = comment.userId;
@@ -10,12 +11,13 @@ const Comment = function (comment) {
 Comment.create = (comment, result) => {
     sql.query("INSERT INTO comment SET ?", comment, (err, res) => {
         if (err) {
-            console.log("error: ", err);
+            logger.error('ERROR:', err)
+
             result(err, null);
             return;
         }
 
-        console.log("[CREATED] Comment: ", { id: res.insertId, ...comment });
+        logger.info('CREATED: New comment created')
         result(null, { id: res.insertId, ...comment });
     });
 };
@@ -23,13 +25,14 @@ Comment.create = (comment, result) => {
 Comment.getAllByVideoId = (videoId, result) => {
     sql.query(`SELECT * FROM comment WHERE videoId = ${videoId}`, (err, res) => {
         if (err) {
-            console.log("error: ", err);
+            logger.error('ERROR:', err)
+
             result(err, null);
             return;
         }
 
         if (res.length) {
-            console.log("[FOUND] Comments: ", res[0]);
+            logger.info('[FOUND] Comments: ', res[0])
             result(null, res[0]);
             return;
         }
@@ -41,7 +44,8 @@ Comment.getAllByVideoId = (videoId, result) => {
 Comment.delete = (id, result) => {
     sql.query("DELETE FROM comment WHERE id = ?", id, (err, res) => {
         if (err) {
-            console.log("error: ", err);
+            logger.error('ERROR:', err)
+
             result(null, err);
             return;
         }
@@ -51,7 +55,7 @@ Comment.delete = (id, result) => {
             return;
         }
 
-        console.log("Deleted comment with id: ", id);
+        logger.info("Deleted comment with id: ", id);
         result(null, res);
     });
 };

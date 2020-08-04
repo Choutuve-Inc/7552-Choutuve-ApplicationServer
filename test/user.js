@@ -24,7 +24,6 @@ describe('Users', () => {
           }
         )
         .end(function (err, res) {
-          console.log(res.body)
           expect(res).to.have.status(200);
           done();
         });
@@ -44,7 +43,6 @@ describe('Users', () => {
           }
         )
         .end(function (err, res) {
-          console.log(res.body)
           expect(res).to.have.status(200);
           done();
         });
