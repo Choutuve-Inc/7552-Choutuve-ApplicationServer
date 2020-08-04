@@ -24,6 +24,8 @@ app.get("/", (req, res) => {
     res.json({ message: "Choutuve, like YouTube :)" });
 });
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
     logger.info(`Server is running on port ${PORT}.`)
 });
+
+module.exports = server;
