@@ -8,50 +8,6 @@ Choutuve, like YouTube, but with~~out~~ quality (App Server)
 
 https://choutuve-app-server.herokuapp.com/
 
-## Test the API
-
-```bash
-npm start
-```
-
-### Users
-
-GET localhost:3000/users
-
-POST localhost:3000/users
-
-```json
-{
-    "email": "ldesuque@choutuve.com",
-    "name": "Leandro"
-}
-```
-
-GET localhost:3000/users/:id
-
-### Comments
-
-POST localhost:3000/comments/
-
-```json
-{
-    "userId": 1,
-    "videoId": 1,
-    "date": "2020-01-01",
-    "message": "This is the first comment, but not the last"
-}
-```
-
-GET localhost:3000/comments/:videoId
-
-DELETE localhost:3000/comments/:commentId
-
-### Videos (Mock)
-
-GET localhost:3000/videos/:userId
-
-GET localhost:3000/videos/feed/:userId
-
 ## Setup
 
 This will generate a package-lock.json file which will be copied to the Docker image.
